@@ -10,6 +10,10 @@ import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { HttpClientModule } from '@angular/common/http';
 import { interceptorProvider } from './interceptors/movie-interceptor.service';
+import { NewMovieComponent } from './movie/new-movie/new-movie.component';
+import { MatRadioModule } from '@angular/material/radio'
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -17,13 +21,17 @@ import { interceptorProvider } from './interceptors/movie-interceptor.service';
     LoginComponent,
     RegistroComponent,
     MenuComponent,
-    IndexComponent
+    IndexComponent,
+    NewMovieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRadioModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

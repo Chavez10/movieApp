@@ -1,0 +1,127 @@
+<app-menu></app-menu>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form (ngSubmit)="onNewMovie()" novalidate enctype="multipart/form-data">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="title">Titulo</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                [(ngModel)]="title"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="description">Descripcion</label>
+              <textarea
+                class="form-control"
+                id="description"
+                rows="3"
+                name="description"
+                [(ngModel)]="description"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="rentPrice">Precio de Alquiler</label>
+              <input
+                class="form-control"
+                type="number"
+                id="rentPrice"
+                name="rentPrice"
+                [(ngModel)]="rentPrice"
+              />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="salesPrice">Precio de Venta</label>
+              <input
+                class="form-control"
+                type="number"
+                id="salesPrice"
+                name="salesPrice"
+                [(ngModel)]="salesPrice"
+              />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="stock">Stock</label>
+              <input
+                class="form-control"
+                type="number"
+                id="stock"
+                name="stock"
+                [(ngModel)]="stock"
+              />
+            </div>
+          </div>
+          <div class="col-md-3">
+              
+            <div *ngFor="let dp of tipoDisponibilidad; let i = index" class="form-check">
+                <input class="form-check-input" type="radio" name="disponible" id="availability{{i}}" value="{{dp}}" (change)="radioChange($event)">
+                <label class="form-check-label" for="availability{{i}}">
+                  {{dp}}
+                </label>
+              </div>
+          </div>
+          
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group" *ngFor="let type of typeMovies">
+                    <div class="form-check">
+                      <input class="form-check-input" name="{{type.typeMovie}}" value="{{type.id}}" type="checkbox" id="gridCheck" [(ngModel)]="type.check" (change)="typeChange($event)">
+                      <label class="form-check-label" for="gridCheck">
+                        {{type.typeMovie}}
+                      </label>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label for="image">Imagen</label>
+                  <input
+                    type="file"
+                    class="form-control-file"
+                    id="image"
+                    name="image"
+                    #imagenInputFile
+                    (change)="onFileChange($event)"
+                    accept="image/png, image/jpeg, image/jpg"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                  <img class="image-thumbnail" style="max-width: 100px;" [src]="imagenMin" alt="">
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Agregar Pelicula</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--  -->

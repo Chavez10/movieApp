@@ -37,4 +37,16 @@ export class IndexComponent implements OnInit {
     );
   }
 
+  onLikes(id:number){
+    this.movieService.likes(id).subscribe(
+      data => {
+        this.movies[id].id = data.like
+        console.log(data)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
 }

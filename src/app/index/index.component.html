@@ -9,18 +9,23 @@
       style="max-width: 540px"
       *ngFor="let movie of movies"
     >
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="..." alt="..." />
+      <div class="row">
+        <div class="col-md-3">
+          <img src="{{movie.image}}" class="img-fluid img-thumbnail" style="height: 190px;" />
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
             <p class="card-text">
               {{movie.description}}
             </p>
             <p class="card-text">
-              <small class="text-muted">Likes: {{movie.likes}}</small>
+              <small class="text-info">Likes: <strong>{{movie.likes}}</strong> </small>
+              <small><a class="text-info mx-1" style="cursor: pointer;" (click)="onLikes(movie.id!)">Dar Like</a></small>
+            </p>
+            <p class="card-text">
+              <button class="btn btn-info">Alquilar por ${{movie.rentPrice | number: '.2-2'}}</button>
+              <button class="btn btn-primary mx-2">Comprar por ${{movie.salesPrice | number: '.2-2'}} </button>
             </p>
           </div>
         </div>

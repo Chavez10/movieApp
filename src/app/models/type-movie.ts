@@ -3,4 +3,8 @@ export class TypeMovie{
     typeMovie: string
     createdAt: string
     status: boolean
+
+    constructor(id: number){
+        this.id = id
+    }
 }

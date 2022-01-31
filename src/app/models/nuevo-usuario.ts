@@ -4,7 +4,6 @@ export class NuevoUsuario {
         public username:string, 
         public email:string,
         public password:string,
-        public status:boolean,
-        public authorities:string[]
+        public status:boolean
     ){}
 }
