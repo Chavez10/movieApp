@@ -21,6 +21,12 @@
         <li class="nav-item" *ngIf="isAdmin">
           <a class="nav-link" routerLink="/new-movie">Agregar Peliculas</a>
         </li>
+        <li class="nav-item" *ngIf="!isAdmin && isLogged">
+          <a class="nav-link" routerLink="/mov-user">Tus Movimientos</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin && isLogged">
+          <a class="nav-link" routerLink="/return-movie">Retorno de Peliculas</a>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input

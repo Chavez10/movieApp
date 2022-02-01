@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { LoginUsuario } from 'src/app/models/login-usuario';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +45,10 @@ export class LoginComponent implements OnInit {
         this.tokenService.setUsername(data.username)
         this.tokenService.setAuthorities(data.authorities)
         this.roles = data.authorities
-        this.router.navigate(['/'])
+        this.toastr.success(`Bienvenido ${data.username}`, 'Exito', {
+          timeOut: 3000, positionClass: 'toast-top-right'
+        });
+        this.router.navigate(['/'])  
       },
       err => {
         this.isLogged = false

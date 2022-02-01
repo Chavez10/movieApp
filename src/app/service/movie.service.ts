@@ -31,4 +31,17 @@ export class MovieService {
   public likes(id:number): Observable<any>{
     return this.httpClient.put<any>(this.movieURL + `likes/${id}`, null)
   }
+
+  public getMovie(id: number): Observable<any>{
+    return this.httpClient.get<any>(this.movieURL + `${id}`)
+  }
+
+  public updateMovie(movie: Movie, id:number): Observable<any>{
+    return this.httpClient.put<any>(this.movieURL + `update/${id}`, movie)
+  }
+
+  public deleteMovie(id:number): Observable<any>{
+    return this.httpClient.delete(this.movieURL + `delete/${id}`)
+  }
+
 }

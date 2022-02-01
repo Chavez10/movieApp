@@ -13,7 +13,12 @@ import { interceptorProvider } from './interceptors/movie-interceptor.service';
 import { NewMovieComponent } from './movie/new-movie/new-movie.component';
 import { MatRadioModule } from '@angular/material/radio'
 import { NgxSpinnerModule } from "ngx-spinner";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SaleMovieComponent } from './movie/sale-movie/sale-movie.component'
+import { ToastrModule } from 'ngx-toastr';
+import { MovimientosUserComponent } from './movimientos-user/movimientos-user.component';
+import { EditMovieComponent } from './movie/edit-movie/edit-movie.component';
+import { ReturnMovieComponent } from './return-movie/return-movie.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +27,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     RegistroComponent,
     MenuComponent,
     IndexComponent,
-    NewMovieComponent
+    NewMovieComponent,
+    SaleMovieComponent,
+    MovimientosUserComponent,
+    EditMovieComponent,
+    ReturnMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     HttpClientModule,
     MatRadioModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

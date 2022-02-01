@@ -1,8 +1,6 @@
 <app-menu></app-menu>
 <div class="container">
-  <div class="row" *ngIf="isLogged">
-    <h3>Bienvenido {{ username }}</h3>
-  </div>
+  <hr>
   <div class="row row-cols-1 row-cols-md-2 d-flex">
     <div
       class="card mb-3 mx-2"
@@ -19,13 +17,15 @@
             <p class="card-text">
               {{movie.description}}
             </p>
-            <p class="card-text">
-              <small class="text-info">Likes: <strong>{{movie.likes}}</strong> </small>
-              <small><a class="text-info mx-1" style="cursor: pointer;" (click)="onLikes(movie.id!)">Dar Like</a></small>
+            <p class="card-text" >
+              <small class="text-info">Likes: <strong>{{movie.likes}}</strong> </small>&nbsp;|
+              <small *ngIf="isLogged"><a class="font-weight-bold mx-1" style="cursor: pointer;"  (click)="onLikes(movie.id!)">Dar Like</a></small>
             </p>
             <p class="card-text">
-              <button class="btn btn-info">Alquilar por ${{movie.rentPrice | number: '.2-2'}}</button>
-              <button class="btn btn-primary mx-2">Comprar por ${{movie.salesPrice | number: '.2-2'}} </button>
+              <button class="btn btn-info" (click)="onRentedMovie(movie.id!, movie.title)" [disabled]="!isLogged">Alquilar por ${{movie.rentPrice | number: '.2-2'}}</button>
+              <button class="btn btn-primary mx-2" (click)="onSalesMovie(movie.id!, movie.title)" [disabled]="!isLogged">Comprar por ${{movie.salesPrice | number: '.2-2'}} </button>
+              <button class="btn btn-warning my-1" routerLink="/edit/{{movie.id!}}" *ngIf="isAdmin" >Editar</button>
+              <button class="btn btn-danger mx-2" (click)="onDelete(movie.id!)" *ngIf="isAdmin" >Eliminar</button>
             </p>
           </div>
         </div>

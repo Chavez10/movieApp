@@ -1,0 +1,59 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Alquileres</h4>
+                <hr>
+                <table class="table" *ngIf="rentedMovie.length > 0; else rentMsg">
+                    <thead>
+                      <tr>
+                        <th scope="col">Pelicula</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Fecha de Alquiler</th>
+                        <th scope="col">Fecha de Entrega</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rent of rentedMovie">
+                        <td>{{rent.movie}}</td>
+                        <td>{{rent.user}}</td>
+                        <td>{{rent.rentDate | date}}</td>
+                        <td>{{rent.returnDate | date}}</td>
+                        <td><a class="btn btn-primary" (click)="onDelete(rent.rentedId!)" (click)="onDelivery(rent.rentedId!, rent.userId, rent.movieId, rent.movie, rent.user)" >Entregar</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-md-6">
+                <h4>Entregadas</h4>
+                <hr>
+                <table class="table" *ngIf="retMovie.length > 0; else rentMsg">
+                    <thead>
+                      <tr>
+                        <th scope="col">Pelicula</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">A Tiempo</th>
+                        <th scope="col">Penalizacion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let mov of retMovie">
+                        <td>{{mov.movie}}</td>
+                        <td>{{mov.user}}</td>
+                        <td *ngIf="mov.onTime">{{onTime}}</td>
+                        <td *ngIf="!mov.onTime">{{outTime}}</td>
+                        <td>{{mov.penalty}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <ng-template #rentMsg>
+          <p>{{msg}}</p>
+        </ng-template>
+    </div>
+</div>
+
+

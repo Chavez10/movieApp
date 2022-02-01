@@ -1,0 +1,49 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Tus Compras</h4>
+                <hr>
+                <table class="table" *ngIf="soldMovie.length > 0; else rentMsg">
+                    <thead>
+                      <tr>
+                        <th scope="col">Pelicula</th>
+                        <th scope="col">Fecha de Compra</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let mov of soldMovie">
+                        <td>{{mov.movie}}</td>
+                        <td>{{mov.datePurchase | date:'medium'}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-md-6">
+                <h4>Tus Alquileres</h4>
+                <hr>
+                <table class="table" *ngIf="rentedMovie.length > 0; else rentMsg">
+                    <thead>
+                      <tr>
+                        <th scope="col">Pelicula</th>
+                        <th scope="col">Fecha de Alquiler</th>
+                        <th scope="col">Fecha de Entrega</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rent of rentedMovie">
+                        <td>{{rent.movie}}</td>
+                        <td>{{rent.rentDate | date}}</td>
+                        <td>{{rent.returnDate | date}}</td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <ng-template #rentMsg>
+          <p>{{msg}}</p>
+        </ng-template>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { Movie } from 'src/app/models/movie';
 import { TypeMovie } from 'src/app/models/type-movie';
 import { MovieService } from 'src/app/service/movie.service';
@@ -34,7 +35,8 @@ export class NewMovieComponent implements OnInit {
     private movieService: MovieService, 
     private typeMv: TypeServiceService,
     private router: Router,
-    private spiner: NgxSpinnerService) {}
+    private spiner: NgxSpinnerService,
+    private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.onTypeMovie()
@@ -52,6 +54,7 @@ export class NewMovieComponent implements OnInit {
       this.imagenMin = e.target.result
     }
     fr.readAsDataURL(this.imagen)
+    console.log(this.image)
   }
 
   typeChange(event: any){
@@ -91,11 +94,15 @@ export class NewMovieComponent implements OnInit {
       let typeMov = new TypeMovie(tipo)
       this.type.push(typeMov)
     })
+    console.log(this.image)
     this.movie = new Movie(this.title, this.description, this.image,
       this.rentPrice, this.salesPrice, this.stock, this.availability, this.status, this.likes, this.type);
     
       this.movieService.newMovie(this.movie).subscribe(
         data =>{
+          this.toastr.success(`${data.message}`, 'Exito', {
+            timeOut: 3000, positionClass: 'toast-top-right'
+          });
           this.router.navigate(["/"])
           console.log(data)
         },
